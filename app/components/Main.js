@@ -16,6 +16,7 @@ import {
   ScrollView,
   TouchableOpacity,
   AsyncStorage,
+  KeyboardAvoidingView,
 } from 'react-native';
 
 import Note from './Note';
@@ -53,16 +54,16 @@ export default class Main extends Component {
           {notes}
         </ScrollView>
 
-        <View style={styles.footer}>
+        <KeyboardAvoidingView behavior="padding" style={styles.footer}>
           <TextInput
-             style={styles.textInput}
-             onChangeText={(noteText) => this.setState({noteText})}
-             value={this.state.noteText}
-             placeholder=">note"
-             placeholderTextColor="white"
-             underlineColoriOS="transparent">
+            style={styles.textInput}
+            onChangeText={(noteText) => this.setState({noteText})}
+            value={this.state.noteText}
+            placeholder=">note"
+            placeholderTextColor="white"
+            underlineColoriOS="transparent">
           </TextInput>
-        </View>
+        </KeyboardAvoidingView>
 
         <TouchableOpacity
           onPress={ this.addNote.bind(this) }
