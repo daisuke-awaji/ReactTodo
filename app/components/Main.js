@@ -32,7 +32,7 @@ export default class Main extends Component {
   componentDidMount() {
     // AsyncStorageに保存してあるnoteを初期表示
     AsyncStorage.getItem('note').then((value) => {
-      this.setState({ noteArray: JSON.parse(value) })
+      (value == null) ? null : this.setState({ noteArray: JSON.parse(value) })
     }).done();
   }
 
@@ -42,7 +42,6 @@ export default class Main extends Component {
       return <Note key={key} keyval={key} val={val}
                deleteMethod={ () => this.deleteNote(key) } />
      });
-
 
     return (
       <View style={styles.container}>
@@ -97,7 +96,7 @@ export default class Main extends Component {
   deleteNote(key) {
     this.state.noteArray.splice(key, 1);
     this.setState({ noteArray: this.state.noteArray })
-    
+
     let note = this.state.noteArray;
     AsyncStorage.setItem('note', JSON.stringify(note))
   }
