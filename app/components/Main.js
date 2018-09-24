@@ -14,7 +14,8 @@ import {
   View,
   TextInput,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  AsyncStorage,
 } from 'react-native';
 
 import Note from './Note';
@@ -25,7 +26,14 @@ export default class Main extends Component {
     this.state = {
       noteArray: [],
       noteText: '',
-    }
+    };
+  }
+
+  componentDidMount() {
+    // AsyncStorageに保存してあるnoteを初期表示
+    AsyncStorage.getItem('note').then((value) => {
+      this.setState({ noteArray: JSON.parse(value) })
+    }).done();
   }
 
   render() {
@@ -71,20 +79,27 @@ export default class Main extends Component {
   addNote() {
     if (this.state.noteText) {
       var d = new Date();
-      this.state.noteArray.push({
-        'date': d.getFullYear() + "/" +
+      var today = d.getFullYear() + "/" +
                 (d.getMonth()+1) + "/" +
-                d.getDate(),
+                d.getDate()
+      this.state.noteArray.push({
+        'date': today,
         'note': this.state.noteText,
       });
-      this.setState({ noteArray: this.state.noteArray })
+      this.setState({ noteArray: this.state.noteArray });
       this.setState({ noteText: '' });
+
+      let note = this.state.noteArray;
+      AsyncStorage.setItem('note', JSON.stringify(note))
     }
   }
 
   deleteNote(key) {
     this.state.noteArray.splice(key, 1);
     this.setState({ noteArray: this.state.noteArray })
+    
+    let note = this.state.noteArray;
+    AsyncStorage.setItem('note', JSON.stringify(note))
   }
 }
 
