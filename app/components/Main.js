@@ -52,7 +52,7 @@ export default class Main extends Component {
             style={styles.textInput}
             onChangeText={(noteText) => this.setState({noteText})}
             value={this.state.noteText}
-            placeholder=">note"
+            placeholder="> note"
             placeholderTextColor="white"
             underlineColoriOS="transparent">
           </TextInput>
@@ -100,18 +100,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  header: {
-    backgroundColor: '#E91E63',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderBottomWidth: 10,
-    borderBottomColor: '#ddd',
-  },
-  headerText: {
-    color: 'white',
-    fontSize: 18,
-    padding: 26,
-  },
   scrollContainer: {
     flex: 1,
     marginBottom: 100,
@@ -129,6 +117,7 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#252525',
     borderTopWidth: 2,
+    fontSize: 20,
     borderTopColor: '#ededed',
   },
 
@@ -137,7 +126,7 @@ const styles = StyleSheet.create({
     zIndex: 11,
     right: 20,
     bottom: 90,
-    backgroundColor: '#E91E63',
+    backgroundColor: '#ffbb70',
     width: 45,
     height: 45,
     borderRadius: 50,
