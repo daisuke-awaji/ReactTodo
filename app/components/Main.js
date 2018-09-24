@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, {Component} from 'react';
 import {
   Platform,
@@ -17,7 +9,10 @@ import {
   TouchableOpacity,
   AsyncStorage,
   KeyboardAvoidingView,
+  Image
 } from 'react-native';
+
+import MainHeader from './MainHeader';
 
 import Note from './Note';
 
@@ -46,9 +41,7 @@ export default class Main extends Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.headerText}>--noter--</Text>
-        </View>
+        <MainHeader />
 
         <ScrollView style={styles.scrollContainer}>
           {notes}
