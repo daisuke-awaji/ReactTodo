@@ -31,14 +31,19 @@ export default class Note extends Component {
   render() {
     return (
       <Card containerStyle={{padding: 10}} >
-        <Text style={styles.noteText}>
-          {this.props.val.date} {this.props.val.note}
+        <Text style={styles.noteTextDate}>
+          {this.props.val.date}
+        </Text>
+        <Text style={styles.noteTextNote}>
+          {this.props.val.note}
         </Text>
         <Button onPress={this.props.deleteMethod}
           icon={{name: 'delete'}}
+          style={styles.deleteButton}
+          buttonStyle={{ borderRadius: 100 }}
           backgroundColor='#03A9F4'
-          buttonStyle={{borderRadius: 20, marginLeft: 30, marginRight: 30, marginBottom: 0}}
-          title='delete me'>
+          title='DELETE'
+          >
         </Button>
       </Card>
     );
@@ -46,8 +51,17 @@ export default class Note extends Component {
 }
 
 const styles = StyleSheet.create({
-  noteText: {
+  noteTextDate: {
     borderBottomWidth: 10,
-    paddingLeft: 25
+    paddingLeft: 25,
+    fontSize: 15
+  },
+  noteTextNote: {
+    borderBottomWidth: 10,
+    paddingLeft: 25,
+    fontSize: 25
+  },
+  deleteButton: {
+    alignItems: 'baseline'
   }
 });
